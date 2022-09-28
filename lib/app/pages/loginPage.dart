@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
                   'assets/image/logoKecil.png',
@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ]),
-          SizedBox(height: 56),
+          SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -91,6 +91,15 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             margin: const EdgeInsets.all(20),
             width: double.infinity,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 5,
+                      offset: Offset(0, 2))
+                ]),
             // elevation: 20.0,
             // shadowColor: Colors.black,
             child: TextFormField(
@@ -129,8 +138,20 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.all(20),
+            margin: const EdgeInsets.symmetric(
+              vertical: 12,
+              horizontal: 20,
+            ),
             width: double.infinity,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 5,
+                      offset: Offset(0, 2))
+                ]),
             child: TextFormField(
               decoration: const InputDecoration(
                 enabledBorder: const OutlineInputBorder(
@@ -168,6 +189,15 @@ class _LoginPageState extends State<LoginPage> {
               horizontal: 20,
             ),
             width: double.infinity,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 5,
+                      offset: Offset(0, 2))
+                ]),
             child: TextFormField(
               decoration: const InputDecoration(
                 enabledBorder: const OutlineInputBorder(
@@ -206,6 +236,15 @@ class _LoginPageState extends State<LoginPage> {
               horizontal: 20,
             ),
             width: double.infinity,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 5,
+                      offset: Offset(0, 2))
+                ]),
             child: TextFormField(
               decoration: const InputDecoration(
                 enabledBorder: const OutlineInputBorder(
@@ -218,6 +257,20 @@ class _LoginPageState extends State<LoginPage> {
               onChanged: (value) => setState(() => password = value),
               keyboardType: TextInputType.visiblePassword,
               obscureText: true,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text("Sign Up"),
+              style: ElevatedButton.styleFrom(
+                  primary: darkBlue,
+                  onPrimary: Colors.white,
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15))),
             ),
           ),
         ],
