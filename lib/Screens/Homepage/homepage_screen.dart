@@ -62,7 +62,8 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                     color: darkBlue,
                                     borderRadius: BorderRadius.all(Radius.circular(10),),
                                   ),
-                                  child: Row(
+                                  child: 
+                                  Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Image.asset(
@@ -146,7 +147,219 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                   ],
                                 )
                               ],
-                            )
+                            ),
+                            SizedBox(height: 20),
+                            Container(
+                              height: 200,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Container(
+                                    width: 300,
+                                    height: 200,
+                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                    margin: EdgeInsets.only(right: 16),
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/images/item1.png"),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 300,
+                                    height: 200,
+                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                    margin: EdgeInsets.only(right: 16),
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/images/item1.png"),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 300,
+                                    height: 200,
+                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                    margin: EdgeInsets.only(right: 16),
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/images/item1.png"),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 300,
+                                    height: 200,
+                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                    margin: EdgeInsets.only(right: 16),
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/images/item1.png"),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ),
+                            SizedBox(height: 5),
+                            Row(
+                              children: [
+                                Column(
+                                  children: [
+                                  Text(
+                                    "Kata Mereka Tentang HMIF Care",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 30),
+                            Container(
+                              height:210,
+                              child: ListView(
+                                padding: EdgeInsets.all(5),
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Container(
+                                    width: 180,
+                                    padding: EdgeInsets.all(15),
+                                    margin: EdgeInsets.only(right: 15),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [BoxShadow(
+                                        color: Colors.black12,
+                                        blurRadius: 3.0,
+                                        spreadRadius: 2.0,
+                                        offset: Offset(0, 2.0),
+                                          )]
+                                    ),
+                                    child: 
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Image.asset(
+                                                "assets/images/profil.png",
+                                                width: 50,
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Container(
+                                                width: 80,
+                                                child: Text(
+                                                  "Bambang Pamungkas",
+                                                  maxLines: 2,),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Row(
+                                           children: [
+                                            Text(
+                                              "  Sangat Baik",
+                                              style: TextStyle(
+                                                color: darkBlue,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                           ], 
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                           children: [
+                                              Container(
+                                                width: 125,
+                                                padding: EdgeInsets.only(left: 9),
+                                                child: Text(
+                                                  "Konsultasinya sangat asik dan termotivasi"
+                                                ),
+                                              )
+                                           ], 
+                                          ),
+                                        ],
+                                      ),
+                                  ),
+                                  Container(
+                                    width: 180,
+                                    padding: EdgeInsets.all(15),
+                                    margin: EdgeInsets.only(right: 15),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [BoxShadow(
+                                        color: Colors.black12,
+                                        blurRadius: 3.0,
+                                        spreadRadius: 2.0,
+                                        offset: Offset(0, 2.0),
+                                          )]
+                                    ),
+                                    child: 
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Image.asset(
+                                                "assets/images/profil.png",
+                                                width: 50,
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Container(
+                                                width: 80,
+                                                child: Text(
+                                                  "Bambang Yudho",
+                                                  maxLines: 2,),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Row(
+                                           children: [
+                                            Text(
+                                              "  Baik",
+                                              style: TextStyle(
+                                                color: darkBlue,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                           ], 
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                           children: [
+                                              Container(
+                                                width: 125,
+                                                padding: EdgeInsets.only(left: 9),
+                                                child: Text(
+                                                  "Konsultasinya sangat asik dan termotivasi"
+                                                ),
+                                              )
+                                           ], 
+                                          ),
+                                        ],
+                                      ),
+                                  ),
+                                ],
+                              )
+                            ),
                           ],
                         )
                       ),
