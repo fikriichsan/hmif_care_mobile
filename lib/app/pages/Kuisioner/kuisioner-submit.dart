@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 import 'package:hmif_care_mobile/app/utils/theme/constants.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+
 import '../screen.dart';
 
 class KuisionerSubmitPage extends StatefulWidget {
@@ -150,7 +152,9 @@ class _KuisionerSubmitPageState extends State<KuisionerSubmitPage> {
                     Container(
                       alignment: Alignment.bottomRight,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).restorablePush(_dialogBuilder);
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: darkBrown,
                           shape: new RoundedRectangleBorder(
@@ -168,5 +172,64 @@ class _KuisionerSubmitPageState extends State<KuisionerSubmitPage> {
         ),
       )
     ])));
+  }
+
+  static Route<Object?> _dialogBuilder(
+      BuildContext context, Object? arguments) {
+    return DialogRoute<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Hasil yang diperoleh',
+            textAlign: TextAlign.center,
+          ),
+          content: Wrap(
+            children: [
+              Container(
+                  margin: EdgeInsets.symmetric(vertical: 24),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/image/illustrasi_modal.png",
+                        width: 100,
+                      ),
+                    ],
+                  )),
+              Container(
+                  width: 500,
+                  child: Text(
+                      "Mahasiswa membutuhkan penanganan lebih lanjut. Untuk tahapan penanganan lebih lanjut, mahasiswa dapat mendaftarkan diri pada form yang ada pada halaman utama",
+                      textAlign: TextAlign.center)),
+            ],
+          ),
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(bottom: 32),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 32),
+                      primary: darkBrown,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10),
+                      ),
+                      textStyle: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    child: const Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            )
+          ],
+        );
+      },
+    );
   }
 }
