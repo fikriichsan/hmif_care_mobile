@@ -56,7 +56,7 @@ class _HistoryScreenState extends State<HistoryScreen>{
                                     margin: EdgeInsets.only(bottom: 30),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(15),
                                       boxShadow: [BoxShadow(
                                         color: Colors.black12,
                                         blurRadius: 3.0,
