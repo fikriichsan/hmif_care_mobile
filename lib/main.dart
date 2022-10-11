@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hmif_care_mobile/app/pages/loginPage.dart';
+import 'package:hmif_care_mobile/app/pages/Login/loginPage.dart';
 import 'package:hmif_care_mobile/app/pages/splashScreen.dart';
 
 void main() {
