@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hmif_care_mobile/Screens/Homepage/homepage_screen.dart';
 import 'package:hmif_care_mobile/Screens/Login/login_secreen.dart';
 import 'package:hmif_care_mobile/constants.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: WelcomeScreen(),
+      home: HomePageScreen(),
     );
   }
 }

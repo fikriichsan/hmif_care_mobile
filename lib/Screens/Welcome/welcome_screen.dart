@@ -4,8 +4,6 @@ import 'package:hmif_care_mobile/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
-
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
