@@ -135,7 +135,101 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               color: darkBrown,
                               fontSize: 16,
                             ),)
-                          )
+                          ),
+                        Positioned(
+                          top: size.height*0.28,
+                          left: size.width*0.08,
+                          child: Container(
+                              margin: EdgeInsets.all(2),
+                              width: size.width * 0.55,
+                              padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(Radius.circular(10),),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 3.0,
+                                    spreadRadius: 2.0,
+                                    offset: Offset(0, 2.0),
+                                  )
+                                ],
+                              ),
+                              child: Text("Fill the quiestionaire"),
+                            ),
+                        ),
+                        Positioned(
+                          top: size.height*0.38,
+                          right: size.width*0.08,
+                          child: Container(
+                              margin: EdgeInsets.all(2),
+                              width: size.width * 0.65,
+                              padding: EdgeInsets.fromLTRB(40, 10, 10, 10),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(Radius.circular(10),),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 3.0,
+                                    spreadRadius: 2.0,
+                                    offset: Offset(0, 2.0),
+                                  )
+                                ],
+                              ),
+                              child: Text("Register Yourself in the form to have a consultation", textAlign: TextAlign.end,),
+                            ),
+                        ),
+                        Positioned(
+                          top: size.height*0.50,
+                          left: size.width*0.08,
+                          child: Container(
+                              margin: EdgeInsets.all(2),
+                              width: size.width * 0.65,
+                              padding: EdgeInsets.fromLTRB(10, 10, 30, 10),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(Radius.circular(10),),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 3.0,
+                                    spreadRadius: 2.0,
+                                    offset: Offset(0, 2.0),
+                                  )
+                                ],
+                              ),
+                              child: Text("Choose Your preferable schedule to meet our profesional mentor",),
+                            ),
+                        ),
+                        Positioned(
+                          top: size.height*0.62,
+                          left: size.width*0.08,
+                          child: Container(
+                              margin: EdgeInsets.all(2),
+                              width: size.width * 0.35,
+                              padding: EdgeInsets.fromLTRB(10, 10, 30, 10),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(Radius.circular(10),),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 3.0,
+                                    spreadRadius: 2.0,
+                                    offset: Offset(0, 2.0),
+                                  )
+                                ],
+                              ),
+                              child: Text("Do Your Consultation",),
+                            ),
+                        ),
+                        Positioned(
+                          bottom: size.height*0.16,
+                          right: size.width*0.10,
+                          child: Image.asset(
+                            "assets/images/landing_women.png",
+                        )),
                       ],
                     ),
                   ),
