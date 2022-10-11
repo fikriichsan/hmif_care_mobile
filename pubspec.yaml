@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: 4.6.5
+  radio_button_form_field: ^0.0.4
 
 
   # The following adds the Cupertino Icons font to your application.
