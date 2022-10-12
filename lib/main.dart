@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/Screens/History/historyScreen.dart';
 import 'package:hmif_care_mobile/Screens/Homepage/homepage_screen.dart';
 import 'package:hmif_care_mobile/Screens/Login/login_secreen.dart';
+import 'package:hmif_care_mobile/Screens/Review/review_screen.dart';
 import 'package:hmif_care_mobile/constants.dart';
 
 import 'Screens/Welcome/welcome_screen.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: HistoryScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
