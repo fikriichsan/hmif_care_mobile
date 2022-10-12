@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/app/pages/Kuisioner/kuisioner.dart';
 import 'package:hmif_care_mobile/app/pages/Login/loginPage.dart';
+import 'package:hmif_care_mobile/app/pages/Logout/logout.dart';
 import 'package:hmif_care_mobile/app/pages/splashScreen.dart';
 
 void main() {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: KuisionerPage(),
+      home: LogoutPage(),
     );
   }
 }

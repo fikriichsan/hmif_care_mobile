@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 import 'package:hmif_care_mobile/app/utils/theme/constants.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import '../screen.dart';
 
@@ -204,6 +203,8 @@ class _KuisionerSubmitPageState extends State<KuisionerSubmitPage> {
                       textAlign: TextAlign.center)),
             ],
           ),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(18))),
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(bottom: 32),
