@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hmif_care_mobile/app/pages/Welcome/welcome_screen.dart';
-import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 
 void main() {
   runApp(const MyApp());
