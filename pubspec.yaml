@@ -62,6 +62,10 @@ flutter:
     - assets/shape_login1.png
     - assets/shape_login2.png
     - assets/logo_hmifcare.png
+    - assets/main_top.png
+    - assets/left.png
+    - assets/pic-kuis.png
+    - assets/pic-kuis2.png
   
   
   # fonts:
