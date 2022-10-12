@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/main.dart';
-import 'package:hmif_care_mobile/app/pages/loginPage.dart';
+import 'package:hmif_care_mobile/app/pages/Login/loginPage.dart';
 
 class SplashScreen extends StatefulWidget {
   _SplashScreen createState() => _SplashScreen();
