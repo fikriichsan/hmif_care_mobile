@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: darkBlue,
         scaffoldBackgroundColor: Colors.white,
+
       ),
       home: WelcomeScreen(),
     );
