@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:hmif_care_mobile/constants.dart';
+
+import '../../utils/theme/colors.dart';
 
 class HomePageScreen extends StatefulWidget {
   @override

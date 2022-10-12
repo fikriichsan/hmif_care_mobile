@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hmif_care_mobile/constants.dart';
+
+import '../../utils/theme/colors.dart';
 
 class HistoryScreen extends StatefulWidget {
   @override

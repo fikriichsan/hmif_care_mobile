@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hmif_care_mobile/Screens/Welcome/components/background.dart';
-import 'package:hmif_care_mobile/constants.dart';
+import 'package:hmif_care_mobile/app/pages/Welcome/Components/Background.dart';
+import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class WelcomeScreen extends StatefulWidget {

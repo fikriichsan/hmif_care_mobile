@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hmif_care_mobile/constants.dart';
 
 class BackgroundLanding extends StatelessWidget {
   final Widget child;
