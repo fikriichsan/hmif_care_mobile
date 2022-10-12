@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
+import 'package:get/get.dart';
 
 class ReviewScreen extends StatefulWidget {
   @override
@@ -172,7 +173,7 @@ class _ReviewScreenState extends State<ReviewScreen>{
                                             maxLines: 6,
                                             style: TextStyle(
                                               fontSize: 14,
-                                              color: lightBrown,
+                                              color: darkBrown,
                                             ),
                                             decoration: InputDecoration(
                                               hintText: "Bagikan Penilaianmu dan bantu Pengguna lain membuat pilihan yang lebih baik",
@@ -185,7 +186,9 @@ class _ReviewScreenState extends State<ReviewScreen>{
                             Container(
                                             width: 80,
                                             child: ElevatedButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Get.toNamed('/home');
+                                              },
                                               child: Text("Kirim"),
                                               style: ElevatedButton.styleFrom(
                                                 primary: darkBrown,

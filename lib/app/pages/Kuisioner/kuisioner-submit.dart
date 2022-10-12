@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 import 'package:hmif_care_mobile/app/utils/theme/constants.dart';
-
+import 'package:get/get.dart';
 import '../screen.dart';
 
 class KuisionerSubmitPage extends StatefulWidget {
@@ -222,7 +222,7 @@ class _KuisionerSubmitPageState extends State<KuisionerSubmitPage> {
                     ),
                     child: const Text('OK'),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      Get.toNamed('/home');
                     },
                   ),
                 ],

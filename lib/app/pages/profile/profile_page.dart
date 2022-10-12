@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -41,7 +43,7 @@ class _ProfilePage extends State<ProfilePage> {
                 Padding(padding: const EdgeInsetsDirectional.fromSTEB(0, 230, 0, 0),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 450,
+                  height: 500,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
@@ -60,32 +62,83 @@ class _ProfilePage extends State<ProfilePage> {
                   ),
                   // tulisan dlm box1
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       /////////////////////////////
-                      Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  
-                  children: const [
-                    Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
-                child: Text('Bambang Susatyo',
-                                style: TextStyle( color: Colors.black),),
-                  
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
-                child: Text('Bambang Susatyo',
-                                style: TextStyle( color: Colors.black),),
-                  
-              ),
-                  ],
-                ),
-              ), 
+                      const SizedBox(
+                        height: 100,
+                      ),
+                      Row(
+                        children: const[
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            'Email'
+                          )
+                        ]
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: const [
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            '11191024@student.itk.ac.id',
+                            style: TextStyle(
+                              color: darkBlue,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ]
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        children: const[
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            'Nama'
+                          )
+                        ]
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: const [
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            'Bambang Sutoyor',
+                            style: TextStyle(
+                              color: darkBlue,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ]
+                      ),
+                      const SizedBox(
+                        height: 220,
+                      ),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.toNamed('/profilel');
+                          },
+                          child: const Icon(
+                                  Icons.logout,
+                                ),
+                        ),
+                      )
                     ],),
                   ),
                 ),

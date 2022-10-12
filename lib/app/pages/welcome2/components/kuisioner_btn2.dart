@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hmif_care_mobile/app/pages/Homepage/homepage_screen.dart';
+import 'package:hmif_care_mobile/app/pages/Kuisioner/kuisioner.dart';
 
 // import '../../../constants.dart';
 import '../../welcome1/welcome_kuisioner1.dart';
@@ -21,7 +23,7 @@ class Kuisionerbtn2 extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const WelcomeScreen();
+                    return KuisionerPage();
                   },
                 ),
               );

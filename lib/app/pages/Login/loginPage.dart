@@ -68,7 +68,9 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                                Get.toNamed('/welcomek');
+                              },
                             child: Text("Login"),
                             style: ElevatedButton.styleFrom(
                                 primary: darkBlue,

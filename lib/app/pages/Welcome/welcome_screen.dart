@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/app/pages/Welcome/Components/Background.dart';
 import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:get/get.dart';
 
-class WelcomeScreen extends StatefulWidget {
+class WelcomePageScreen extends StatefulWidget {
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomePageScreen> {
 
   PageController _controller = PageController();
 
@@ -264,7 +265,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           child: Container(
                             width: size.width * 0.9,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed('/login');
+                              },
                               child: Text("Get Started"),
                               style: ElevatedButton.styleFrom(
                                 primary: darkBlue,

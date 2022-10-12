@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../utils/theme/colors.dart';
+import 'package:get/get.dart';
 
 class HomePageScreen extends StatefulWidget {
   @override
@@ -29,22 +31,32 @@ class _HomePageScreenState extends State<HomePageScreen>{
                         child: Column(
                           children: [
                             Row(
-                              children: [
+                              children: const [
                                 SizedBox(
                                   height: 30,
                                 )
                               ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Image.asset(
                                   "assets/images/logo_hmifcare.png",
                                   width: 120,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed('/profile');
+                                  },
+                                  child: Image.asset(
+                                    "assets/images/profil.png",
+                                    width: 70,
+                                  ),
                                 )
                               ],
                             ),
                             Row(
-                              children: [
+                              children: const [
                                 SizedBox(
                                   height: 40,
                                 )
@@ -53,11 +65,15 @@ class _HomePageScreenState extends State<HomePageScreen>{
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  margin: EdgeInsets.all(2),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed('/form');
+                                  },
+                                  child: Container(
+                                  margin: const  EdgeInsets.all(2),
                                   width: size.width*0.846,
                                   height: 100,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: darkBlue,
                                     borderRadius: BorderRadius.all(Radius.circular(10),),
                                   ),
@@ -69,14 +85,14 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                         "assets/images/homepage_icon.png",
                                         width: 90,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
                                       Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Row(
-                                            children: [
+                                            children: const [
                                               Text(
                                                 "Form Konsultasi",
                                                 style: TextStyle(
@@ -87,7 +103,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                             ],
                                           ),
                                           Row(
-                                            children: [
+                                            children: const [
                                               Text(
                                                 "Ingin memeriksakan keadaan",
                                                 style: TextStyle(
@@ -98,7 +114,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                             ],
                                           ),
                                           Row(
-                                            children: [
+                                            children: const[
                                               Text(
                                                 "Anda lebih lanjut?",
                                                 style: TextStyle(
@@ -109,7 +125,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                             ],
                                           ),
                                           Row(
-                                            children: [
+                                            children: const[
                                               Text(
                                                 "Yuk Konsul",
                                                 style: TextStyle(
@@ -123,6 +139,42 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                       )
                                     ],
                                   ),
+                                ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed('/review');
+                                  },
+                                  child: Container(
+                                  margin: const EdgeInsets.all(2),
+                                  width: size.width*0.846,
+                                  padding: const EdgeInsets.symmetric(vertical: 20),
+                                  decoration: const BoxDecoration(
+                                    color: lightBlue,
+                                    borderRadius: BorderRadius.all(Radius.circular(10),),
+                                  ),
+                                  child: 
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Tulis Feedback Konseling",
+                                        style: TextStyle(
+                                          color: white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                                 ),
                               ],
                             ),
@@ -153,6 +205,23 @@ class _HomePageScreenState extends State<HomePageScreen>{
                               child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed('/news');
+                                    },
+                                    child: Container(
+                                      width: 300,
+                                      height: 200,
+                                      padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      margin: EdgeInsets.only(right: 16),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage("assets/images/item1.png"),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                   Container(
                                     width: 300,
                                     height: 200,

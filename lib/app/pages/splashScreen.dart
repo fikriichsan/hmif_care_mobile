@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hmif_care_mobile/app/pages/Welcome/welcome_screen.dart';
 import 'package:hmif_care_mobile/main.dart';
 import 'package:hmif_care_mobile/app/pages/Login/loginPage.dart';
 
@@ -20,7 +21,7 @@ class _SplashScreen extends State<SplashScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (BuildContext context) => LoginPage(),
+          builder: (BuildContext context) => WelcomePageScreen(),
         ),
       );
     });
