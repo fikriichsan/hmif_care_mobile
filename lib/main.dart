@@ -3,6 +3,7 @@ import 'package:hmif_care_mobile/app/pages/Kuisioner/kuisioner.dart';
 import 'package:hmif_care_mobile/app/pages/Login/loginPage.dart';
 import 'package:hmif_care_mobile/app/pages/Logout/logout.dart';
 import 'package:hmif_care_mobile/app/pages/splashScreen.dart';
+import './app/pages/screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LogoutPage(),
+      home: FormKonselingPage(),
     );
   }
 }
