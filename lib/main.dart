@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/app/pages/Homepage/homepage_screen.dart';
 import 'package:hmif_care_mobile/app/pages/Kuisioner/kuisioner.dart';
 import 'package:hmif_care_mobile/app/pages/Login/loginPage.dart';
+import 'package:hmif_care_mobile/app/pages/Logout/logout.dart';
 import 'package:hmif_care_mobile/app/pages/News/newspage_screen.dart';
 import 'package:hmif_care_mobile/app/pages/Review/review_screen.dart';
-import 'package:hmif_care_mobile/app/pages/Welcome/welcome_screen.dart';
 import 'package:hmif_care_mobile/app/pages/profile/profile_page.dart';
+import 'package:hmif_care_mobile/app/pages/screen.dart';
 import 'package:hmif_care_mobile/app/pages/splashScreen.dart';
 import 'package:hmif_care_mobile/app/pages/welcome1/welcome_kuisioner1.dart';
 import 'package:hmif_care_mobile/app/pages/welcome2/welcome_screen2.dart';
@@ -67,6 +68,14 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/profilel',
           page:() => LoginPage(),
+        ),
+        GetPage(
+          name: '/formKonseling',
+          page:() => FormKonselingPage(),
+        ),
+        GetPage(
+          name: '/logout',
+          page:() => LogoutPage(),
         ),
 
       ],

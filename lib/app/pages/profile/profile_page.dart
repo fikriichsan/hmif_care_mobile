@@ -132,7 +132,7 @@ class _ProfilePage extends State<ProfilePage> {
                       Center(
                         child: GestureDetector(
                           onTap: () {
-                            Get.toNamed('/profilel');
+                            Get.toNamed('/logout');
                           },
                           child: const Icon(
                                   Icons.logout,

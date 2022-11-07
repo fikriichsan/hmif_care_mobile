@@ -67,7 +67,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    Get.toNamed('/form');
+                                    Get.toNamed('/formKonseling');
                                   },
                                   child: Container(
                                   margin: const  EdgeInsets.all(2),
