@@ -163,7 +163,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                   child: 
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
+                                    children: const[
                                       Text(
                                         "Tulis Feedback Konseling",
                                         style: TextStyle(
@@ -179,7 +179,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                               ],
                             ),
                             Row(
-                              children: [
+                              children: const [
                                 SizedBox(
                                   height: 30,
                                 )
