@@ -188,7 +188,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                             Row(
                               children: [
                                 Column(
-                                  children: [
+                                  children: const [
                                   Text(
                                     "Trending News",
                                     style: TextStyle(
@@ -199,7 +199,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                 )
                               ],
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             Container(
                               height: 200,
                               child: ListView(
@@ -212,9 +212,9 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                     child: Container(
                                       width: 300,
                                       height: 200,
-                                      padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                      margin: EdgeInsets.only(right: 16),
-                                      decoration: BoxDecoration(
+                                      padding: const EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      margin: const EdgeInsets.only(right: 16),
+                                      decoration: const BoxDecoration(
                                         image: DecorationImage(
                                           image: AssetImage("assets/images/item1.png"),
                                           fit: BoxFit.cover,
@@ -225,9 +225,9 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                   Container(
                                     width: 300,
                                     height: 200,
-                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                    margin: EdgeInsets.only(right: 16),
-                                    decoration: BoxDecoration(
+                                    padding:  const EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                    margin: const EdgeInsets.only(right: 16),
+                                    decoration: const BoxDecoration(
                                       image: DecorationImage(
                                         image: AssetImage("assets/images/item1.png"),
                                         fit: BoxFit.cover,
@@ -277,7 +277,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                             Row(
                               children: [
                                 Column(
-                                  children: [
+                                  children: const [
                                   Text(
                                     "Kata Mereka Tentang HMIF Care",
                                     style: TextStyle(
@@ -297,12 +297,12 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                 children: [
                                   Container(
                                     width: 180,
-                                    padding: EdgeInsets.all(15),
-                                    margin: EdgeInsets.only(right: 15),
+                                    padding: const EdgeInsets.all(15),
+                                    margin: const EdgeInsets.only(right: 15),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [BoxShadow(
+                                      boxShadow: [ BoxShadow(
                                         color: Colors.black12,
                                         blurRadius: 3.0,
                                         spreadRadius: 2.0,
@@ -311,14 +311,14 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                     ),
                                     child: 
                                       Column(
-                                        children: [
+                                        children:[
                                           Row(
                                             children: [
                                               Image.asset(
                                                 "assets/images/profil.png",
                                                 width: 50,
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               Container(
@@ -333,7 +333,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                             height: 20,
                                           ),
                                           Row(
-                                           children: [
+                                           children: const [
                                             Text(
                                               "  Sangat Baik",
                                               style: TextStyle(
@@ -367,7 +367,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [BoxShadow(
+                                      boxShadow: const [BoxShadow(
                                         color: Colors.black12,
                                         blurRadius: 3.0,
                                         spreadRadius: 2.0,
@@ -415,8 +415,8 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                            children: [
                                               Container(
                                                 width: 125,
-                                                padding: EdgeInsets.only(left: 9),
-                                                child: Text(
+                                                padding: const EdgeInsets.only(left: 9),
+                                                child: const Text(
                                                   "Konsultasinya sangat asik dan termotivasi"
                                                 ),
                                               )
