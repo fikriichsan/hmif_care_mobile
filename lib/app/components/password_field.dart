@@ -5,9 +5,11 @@ import '../utils/theme/colors.dart';
 class ThePasswordField extends StatelessWidget {
   const ThePasswordField({
     Key? key,
+    this.controllerText,
     required this.hintText,
   }) : super(key: key);
 
+  final controllerText;
   final String hintText;
 
   @override
@@ -23,6 +25,7 @@ class ThePasswordField extends StatelessWidget {
                     color: Colors.black12, blurRadius: 5, offset: Offset(0, 2))
               ]),
           child: TextField(
+            controller: controllerText,
             style: kBodyText.copyWith(color: black),
             obscureText: true,
             keyboardType: TextInputType.visiblePassword,

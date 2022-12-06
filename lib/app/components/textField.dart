@@ -6,10 +6,12 @@ import '../utils/theme/colors.dart';
 class TheTextField extends StatelessWidget {
   const TheTextField({
     Key? key,
+    this.controllerText,
     required this.hintText,
     required this.inputType,
   }) : super(key: key);
 
+  final controllerText;
   final String hintText;
   final TextInputType inputType;
 
@@ -27,6 +29,7 @@ class TheTextField extends StatelessWidget {
                     color: Colors.black12, blurRadius: 5, offset: Offset(0, 2))
               ]),
           child: TextField(
+              controller: controllerText,
               style: kBodyText.copyWith(color: black),
               keyboardType: inputType,
               textInputAction: TextInputAction.next,

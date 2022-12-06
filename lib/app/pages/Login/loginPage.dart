@@ -1,5 +1,8 @@
 import 'dart:ui';
+import 'dart:io';
+import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
@@ -19,6 +22,48 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nimController = TextEditingController();
+
+  String nim = "";
+  String password = "";
+
+  _LoginPageState() {
+    nimController.addListener(() {
+      setState(() {
+        nim = nimController.text;
+      });
+    });
+    passwordController.addListener(() {
+      setState(() {
+        password = passwordController.text;
+      });
+    });
+  }
+
+  String url = Platform.isAndroid ? 'http://192.168.1.232:3001' : 'http://localhost:3001';
+
+  Future<void> login() async {
+    try {
+      var response = await Dio().post(
+        url + '/user/login',
+        data: {
+          "nim": nim,
+          "password": password,
+        },
+      );
+      print(response.data['message']);
+      if (response.data['message'] == 'Login Success'){
+        Get.toNamed('/welcomek');
+      }
+    } catch (e) {
+      print(e);
+      if(e is DioError){
+        print(e.response!.data['error']['message'].toString());
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,15 +96,18 @@ class _LoginPageState extends State<LoginPage> {
                                 SizedBox(
                                   height: 24,
                                 ),
-                                FieldName(fieldName: "NIM"),
+                                FieldName(
+                                  fieldName: "NIM"),
                                 TheTextField(
+                                  controllerText: nimController,
                                   hintText: "Write Your NIM",
                                   inputType: TextInputType.text,
                                 ),
                                 FieldName(fieldName: "Password"),
                                 ThePasswordField(
+                                  controllerText: passwordController,
                                   hintText: "Write Your Password",
-                                )
+                                ),
                               ],
                             )),
                         SizedBox(
@@ -69,7 +117,9 @@ class _LoginPageState extends State<LoginPage> {
                           width: MediaQuery.of(context).size.width * 0.9,
                           child: ElevatedButton(
                             onPressed: () {
-                                Get.toNamed('/welcomek');
+                                login();
+                                print(nimController.text);
+                                print(passwordController.text);
                               },
                             child: Text("Login"),
                             style: ElevatedButton.styleFrom(
