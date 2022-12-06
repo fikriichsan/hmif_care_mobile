@@ -29,9 +29,6 @@ class _ProfilePage extends State<ProfilePage> {
       var response = await dio.get(url + '/user/$nim');
       akun.setString('id', response.data['_id']);
       // print(response.data);
-      setState(() {
-        response.data;
-      });
       return response.data;
     } catch (e) {
       print(e);
