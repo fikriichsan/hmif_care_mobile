@@ -33,7 +33,7 @@ class _KuisionerSubmitPageState extends State<KuisionerSubmitPage> {
                   ),
                   child: Text("10/10"),
                 )),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Padding(
@@ -146,7 +146,7 @@ class _KuisionerSubmitPageState extends State<KuisionerSubmitPage> {
                           }),
                     ),
                     SizedBox(
-                      height: 300,
+                      height: 200,
                     ),
                     Container(
                       alignment: Alignment.bottomRight,

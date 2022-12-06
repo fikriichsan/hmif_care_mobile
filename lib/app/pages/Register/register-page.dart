@@ -24,6 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
         body: SafeArea(
             child: Background(
       child: CustomScrollView(
+        physics: const NeverScrollableScrollPhysics(),
         reverse: false,
         slivers: <Widget>[
           SliverFillRemaining(

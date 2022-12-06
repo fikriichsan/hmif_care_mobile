@@ -15,7 +15,9 @@ class _KuisionerPageState extends State<KuisionerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-            child: CustomScrollView(reverse: true, slivers: <Widget>[
+            child: CustomScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              reverse: true, slivers: <Widget>[
       SliverFillRemaining(
         hasScrollBody: false,
         child: Column(
@@ -145,7 +147,7 @@ class _KuisionerPageState extends State<KuisionerPage> {
                           }),
                     ),
                     SizedBox(
-                      height: 300,
+                      height: 200,
                     ),
                     Container(
                       alignment: Alignment.bottomRight,
