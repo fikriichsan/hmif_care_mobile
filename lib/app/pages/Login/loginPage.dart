@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  String url = Platform.isAndroid ? 'http://192.168.1.13:3001' : 'http://localhost:3001';
+  String url = 'https://3266-114-125-170-137.ap.ngrok.io';
 
   Future<void> login() async {
     try {
