@@ -42,25 +42,26 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  String url = Platform.isAndroid ? 'http://192.168.1.13:3001' : 'http://localhost:3001';
+  String url =
+      Platform.isAndroid ? 'http://192.168.1.13:3001' : 'http://localhost:3001';
 
   Future<void> login() async {
     try {
       var dio = Dio();
       dio.options.headers['content-type'] = 'application/json';
       dio.options.headers["accept"] = "application/json";
-      var response = await dio.post(url + '/user/login',
-        data: {"nim": nim, "password": password});
+      var response = await dio
+          .post(url + '/user/login', data: {"nim": nim, "password": password});
       print(response.data['token']);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', response.data['token']);
       prefs.setString("nim", nim);
-      if (response.data['message'] == 'Login Success'){
+      if (response.data['message'] == 'Login Success') {
         Get.toNamed('/welcomek');
       }
     } catch (e) {
       print(e);
-      if (e is DioError){
+      if (e is DioError) {
         print(e.response!.data['error']['message'].toString());
       }
     }
@@ -98,8 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                                 SizedBox(
                                   height: 24,
                                 ),
-                                FieldName(
-                                  fieldName: "NIM"),
+                                FieldName(fieldName: "NIM"),
                                 TheTextField(
                                   controllerText: nimController,
                                   hintText: "Write Your NIM",
@@ -119,10 +119,10 @@ class _LoginPageState extends State<LoginPage> {
                           width: MediaQuery.of(context).size.width * 0.9,
                           child: ElevatedButton(
                             onPressed: () {
-                                login();
-                                print(nimController.text);
-                                print(passwordController.text);
-                              },
+                              login();
+                              print(nimController.text);
+                              print(passwordController.text);
+                            },
                             child: Text("Login"),
                             style: ElevatedButton.styleFrom(
                                 primary: darkBlue,
