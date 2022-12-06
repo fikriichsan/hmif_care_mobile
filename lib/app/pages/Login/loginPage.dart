@@ -55,6 +55,8 @@ class _LoginPageState extends State<LoginPage> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', response.data['token']);
       prefs.setString("nim", nim);
+      var token = await prefs.getString('token');
+      print(token);
       if (response.data['message'] == 'Login Success'){
         Get.toNamed('/welcomek');
       }
