@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 import 'package:hmif_care_mobile/app/utils/theme/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import '../utils/theme/font.dart';
 import '../screen.dart';
@@ -41,24 +42,25 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  String url = Platform.isAndroid ? 'http://192.168.1.232:3001' : 'http://localhost:3001';
+  String url = Platform.isAndroid ? 'http://192.168.1.13:3001' : 'http://localhost:3001';
 
   Future<void> login() async {
     try {
-      var response = await Dio().post(
-        url + '/user/login',
-        data: {
-          "nim": nim,
-          "password": password,
-        },
-      );
-      print(response.data['message']);
+      var dio = Dio();
+      dio.options.headers['content-type'] = 'application/json';
+      dio.options.headers["accept"] = "application/json";
+      var response = await dio.post(url + '/user/login',
+        data: {"nim": nim, "password": password});
+      print(response.data['token']);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', response.data['token']);
+      prefs.setString("nim", nim);
       if (response.data['message'] == 'Login Success'){
         Get.toNamed('/welcomek');
       }
     } catch (e) {
       print(e);
-      if(e is DioError){
+      if (e is DioError){
         print(e.response!.data['error']['message'].toString());
       }
     }
