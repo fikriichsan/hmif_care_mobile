@@ -6,13 +6,14 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/theme/colors.dart';
 import 'package:get/get.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 
 class HomePageScreen extends StatefulWidget {
   @override
   _HomePageScreenState createState() => _HomePageScreenState();
 }
 
-class _HomePageScreenState extends State<HomePageScreen>{
+class _HomePageScreenState extends State<HomePageScreen> {
   String url = 'https://3266-114-125-170-137.ap.ngrok.io';
 
   Future getReview() async {
@@ -24,14 +25,34 @@ class _HomePageScreenState extends State<HomePageScreen>{
       dio.options.headers['accept'] = 'application/json';
       dio.options.headers['Authorization'] = 'Bearer $token';
       var response = await dio.get(url + '/review/');
-      if (response.statusCode == 200){
+      if (response.statusCode == 200) {
         return response.data;
       } else {
         return null;
       }
     } catch (e) {
       print(e);
-      if(e is DioError){
+      if (e is DioError) {
+        print(e.response!.data);
+      }
+    }
+  }
+
+  Future getUser() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      SharedPreferences akun = await SharedPreferences.getInstance();
+      String nim = prefs.getString('nim')!;
+      var dio = Dio();
+      dio.options.headers['content-type'] = 'application/json';
+      dio.options.headers['accept'] = 'application/json';
+      var response = await dio.get(url + '/user/$nim');
+      akun.setString('id', response.data['_id']);
+      // print(response.data);
+      return response.data;
+    } catch (e) {
+      print(e);
+      if (e is DioError) {
         print(e.response!.data);
       }
     }
@@ -49,20 +70,20 @@ class _HomePageScreenState extends State<HomePageScreen>{
     Size size = MediaQuery.of(context).size;
     getToken();
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Column(),
-                      ),
-                      Expanded(
+        body: SafeArea(
+            child: ListView(
+      children: [
+        SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Column(),
+                    ),
+                    Expanded(
                         flex: 12,
                         child: Column(
                           children: [
@@ -81,14 +102,32 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                   width: 120,
                                 ),
                                 GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed('/profile');
-                                  },
-                                  child: Image.asset(
-                                    "assets/images/profil.png",
-                                    width: 70,
-                                  ),
-                                )
+                                    onTap: () {
+                                      Get.toNamed('/profile');
+                                    },
+                                    child: Column(
+                                      children: [
+                                        FutureBuilder(
+                                            future: getUser(),
+                                            builder: (context,
+                                                AsyncSnapshot snapshot) {
+                                              if (snapshot.hasData) {
+                                                return Container(
+                                                  margin: const EdgeInsets.only(
+                                                      bottom: 20),
+                                                  child: ProfilePicture(
+                                                    name: snapshot
+                                                        .data['username'],
+                                                    radius: 22,
+                                                    fontsize: 16,
+                                                  ),
+                                                );
+                                              } else {
+                                                return Text("loading");
+                                              }
+                                            }),
+                                      ],
+                                    ))
                               ],
                             ),
                             Row(
@@ -106,76 +145,79 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                     Get.toNamed('/formKonseling');
                                   },
                                   child: Container(
-                                  margin: const  EdgeInsets.all(2),
-                                  width: size.width*0.846,
-                                  height: 100,
-                                  decoration: const BoxDecoration(
-                                    color: darkBlue,
-                                    borderRadius: BorderRadius.all(Radius.circular(10),),
-                                  ),
-                                  child: 
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/homepage_icon.png",
-                                        width: 90,
+                                    margin: const EdgeInsets.all(2),
+                                    width: size.width * 0.846,
+                                    height: 100,
+                                    decoration: const BoxDecoration(
+                                      color: darkBlue,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
                                       ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            children: const [
-                                              Text(
-                                                "Form Konsultasi",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/homepage_icon.png",
+                                          width: 90,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Row(
+                                              children: const [
+                                                Text(
+                                                  "Form Konsultasi",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                  ),
                                                 ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: const [
+                                                Text(
+                                                  "Ingin memeriksakan keadaan",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                  ),
                                                 ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: const [
-                                              Text(
-                                                "Ingin memeriksakan keadaan",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
+                                              ],
+                                            ),
+                                            Row(
+                                              children: const [
+                                                Text(
+                                                  "Anda lebih lanjut?",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                  ),
                                                 ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: const [
+                                                Text(
+                                                  "Yuk Konsul",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                  ),
                                                 ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: const[
-                                              Text(
-                                                "Anda lebih lanjut?",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                ),
-                                                ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: const[
-                                              Text(
-                                                "Yuk Konsul",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                ),
-                                                ),
-                                            ],
-                                          ),
-                                        ],
-                                      )
-                                    ],
+                                              ],
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
                                 ),
                               ],
                             ),
@@ -189,28 +231,31 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                     Get.toNamed('/review');
                                   },
                                   child: Container(
-                                  margin: const EdgeInsets.all(2),
-                                  width: size.width*0.846,
-                                  padding: const EdgeInsets.symmetric(vertical: 20),
-                                  decoration: const BoxDecoration(
-                                    color: lightBlue,
-                                    borderRadius: BorderRadius.all(Radius.circular(10),),
+                                    margin: const EdgeInsets.all(2),
+                                    width: size.width * 0.846,
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 20),
+                                    decoration: const BoxDecoration(
+                                      color: lightBlue,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Tulis Feedback Konseling",
+                                          style: TextStyle(
+                                            color: white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  child: 
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Tulis Feedback Konseling",
-                                        style: TextStyle(
-                                          color: white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
                                 ),
                               ],
                             ),
@@ -225,207 +270,218 @@ class _HomePageScreenState extends State<HomePageScreen>{
                               children: [
                                 Column(
                                   children: [
-                                  Text(
-                                    "Trending News",
-                                    style: TextStyle(
-                                      fontSize: 16,
+                                    Text(
+                                      "Trending News",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
                                   ],
                                 )
                               ],
                             ),
                             SizedBox(height: 20),
                             Container(
-                              height: 200,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed('/news');
-                                    },
-                                    child: Container(
+                                height: 200,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.toNamed('/news');
+                                      },
+                                      child: Container(
+                                        width: 300,
+                                        height: 200,
+                                        padding:
+                                            EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                        margin: EdgeInsets.only(right: 16),
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/images/item1.png"),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
                                       width: 300,
                                       height: 200,
-                                      padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      padding:
+                                          EdgeInsets.fromLTRB(80, 10, 0, 0),
                                       margin: EdgeInsets.only(right: 16),
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image: AssetImage("assets/images/item1.png"),
+                                          image: AssetImage(
+                                              "assets/images/item1.png"),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 300,
-                                    height: 200,
-                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                    margin: EdgeInsets.only(right: 16),
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/images/item1.png"),
-                                        fit: BoxFit.cover,
+                                    Container(
+                                      width: 300,
+                                      height: 200,
+                                      padding:
+                                          EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      margin: EdgeInsets.only(right: 16),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/item1.png"),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 300,
-                                    height: 200,
-                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                    margin: EdgeInsets.only(right: 16),
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/images/item1.png"),
-                                        fit: BoxFit.cover,
+                                    Container(
+                                      width: 300,
+                                      height: 200,
+                                      padding:
+                                          EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      margin: EdgeInsets.only(right: 16),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/item1.png"),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 300,
-                                    height: 200,
-                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                    margin: EdgeInsets.only(right: 16),
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/images/item1.png"),
-                                        fit: BoxFit.cover,
+                                    Container(
+                                      width: 300,
+                                      height: 200,
+                                      padding:
+                                          EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      margin: EdgeInsets.only(right: 16),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/item1.png"),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 300,
-                                    height: 200,
-                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                    margin: EdgeInsets.only(right: 16),
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/images/item1.png"),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ),
+                                  ],
+                                )),
                             SizedBox(height: 5),
                             Row(
                               children: [
                                 Column(
                                   children: [
-                                  Text(
-                                    "Kata Mereka Tentang HMIF Care",
-                                    style: TextStyle(
-                                      fontSize: 16,
+                                    Text(
+                                      "Kata Mereka Tentang HMIF Care",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
                                   ],
                                 )
                               ],
                             ),
                             SizedBox(height: 30),
                             FutureBuilder(
-                              future: getReview(),
-                              builder: (context, AsyncSnapshot snapshot) {
-                                print(snapshot.data);
-                                if(snapshot.hasData){
-                                  return Container(
-                                  height:210,
-                                  child: ListView.builder(
-                                    padding: EdgeInsets.all(5),
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: snapshot.data.length,
-                                    itemBuilder:(context, index) {
-                                      return Container(
-                                        width: 180,
-                                        padding: EdgeInsets.all(15),
-                                        margin: EdgeInsets.only(right: 15),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(10),
-                                          boxShadow: [BoxShadow(
-                                            color: Colors.black12,
-                                            blurRadius: 3.0,
-                                            spreadRadius: 2.0,
-                                            offset: Offset(0, 2.0),
-                                              )]
-                                        ),
-                                        child: 
-                                          Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/images/profil.png",
-                                                    width: 50,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Container(
-                                                    width: 80,
-                                                    child: Text(
-                                                      snapshot.data[index]['id_user']['username'],
-                                                      maxLines: 2,),
-                                                  )
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 20,
-                                              ),
-                                              Row(
-                                               children: [
-                                                Text(
-                                                  snapshot.data[index]['rate'],
-                                                  style: TextStyle(
-                                                    color: darkBlue,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                               ], 
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Row(
-                                               children: [
-                                                  Container(
-                                                    width: 125,
-                                                    padding: EdgeInsets.only(left: 9),
-                                                    child: Text(
-                                                      snapshot.data[index]['desc']
+                                future: getReview(),
+                                builder: (context, AsyncSnapshot snapshot) {
+                                  print(snapshot.data);
+                                  if (snapshot.hasData) {
+                                    return Container(
+                                        height: 210,
+                                        child: ListView.builder(
+                                            padding: EdgeInsets.all(5),
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: snapshot.data.length,
+                                            itemBuilder: (context, index) {
+                                              return Container(
+                                                width: 180,
+                                                padding: EdgeInsets.all(15),
+                                                margin:
+                                                    EdgeInsets.only(right: 15),
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black12,
+                                                        blurRadius: 3.0,
+                                                        spreadRadius: 2.0,
+                                                        offset: Offset(0, 2.0),
+                                                      )
+                                                    ]),
+                                                child: Column(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Image.asset(
+                                                          "assets/images/profil.png",
+                                                          width: 50,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Container(
+                                                          width: 80,
+                                                          child: Text(
+                                                            snapshot.data[index]
+                                                                    ['id_user']
+                                                                ['username'],
+                                                            maxLines: 2,
+                                                          ),
+                                                        )
+                                                      ],
                                                     ),
-                                                  )
-                                               ], 
-                                              ),
-                                            ],
-                                          ),
-                                      );
-                                    } 
-                                  )
-                                );
-                                } else { 
-                                  return Text("loading");
-                                }
-                              }
-                            ),
+                                                    SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          snapshot.data[index]
+                                                              ['rate'],
+                                                          style: TextStyle(
+                                                            color: darkBlue,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Container(
+                                                          width: 125,
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 9),
+                                                          child: Text(snapshot
+                                                                  .data[index]
+                                                              ['desc']),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }));
+                                  } else {
+                                    return Text("loading");
+                                  }
+                                }),
                           ],
-                        )
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Column(),
-                      ),
-                    ],
-                  ),
-                  
-                ],
-              )
-            )
-          ],
-          )
-        )
-    );
+                        )),
+                    Expanded(
+                      flex: 1,
+                      child: Column(),
+                    ),
+                  ],
+                ),
+              ],
+            ))
+      ],
+    )));
   }
 }
