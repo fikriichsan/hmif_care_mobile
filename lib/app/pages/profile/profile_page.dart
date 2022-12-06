@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hmif_care_mobile/app/pages/Homepage/homepage_screen.dart';
 import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -14,14 +14,14 @@ class _ProfilePage extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(
-         color: Colors.white
-          ),
-          backgroundColor: Colors.transparent,
-          title: Text("profile"),
-        // centerTitle: true,
-        ),
+      // appBar: AppBar(
+      //   leading: Text(
+      //    color: Colors.white
+      //     ),
+      //     backgroundColor: Colors.transparent,
+      //     title: Text("profile"),
+      //   // centerTitle: true,
+      //   ),
       backgroundColor: const Color(0XFF072768),
       body: SingleChildScrollView(
         child: Column(
@@ -29,59 +29,100 @@ class _ProfilePage extends State<ProfilePage> {
           children: [
             Stack(
               children: [
-
-                /////////////////////////////
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 300,
-                  decoration: const BoxDecoration(
-                    color: Color(0XFF072768),
-                  ),
+                const SizedBox(
+                  height: 50,
                 ),
                 /////////////////////////////
-                
-                Padding(padding: const EdgeInsetsDirectional.fromSTEB(0, 230, 0, 0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 500,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 4,
-                        color: Color(0x5B000000),
-                        offset: Offset(0, -2),
-                      )
-                    ],
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(0),
-                      bottomRight: Radius.circular(0),
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                  ),
-                  // tulisan dlm box1
-                  child: Column(
-                    children: [
-                      /////////////////////////////
-                      const SizedBox(
-                        height: 100,
+                Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                    pageBuilder:
+                                        (context, animation1, animation2) =>
+                                            HomePageScreen(),
+                                    transitionDuration: Duration.zero,
+                                    reverseTransitionDuration: Duration.zero));
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                            color: white,
+                            size: 30,
+                          ),
+                        )
+                      ],
+                    )),
+
+                Container(
+                    margin: const EdgeInsets.only(top: 20, right: 10),
+                    alignment: Alignment.topRight,
+                    child: Column(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                    pageBuilder:
+                                        (context, animation1, animation2) =>
+                                            HomePageScreen(),
+                                    transitionDuration: Duration.zero,
+                                    reverseTransitionDuration: Duration.zero));
+                          },
+                          icon: const Icon(
+                            Icons.history,
+                            color: white,
+                            size: 30,
+                          ),
+                        )
+                      ],
+                    )),
+
+                /////////////////////////////
+
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 258, 0, 0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 500,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          color: Color(0x5B000000),
+                          offset: Offset(0, -2),
+                        )
+                      ],
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
                       ),
-                      Row(
-                        children: const[
+                    ),
+                    // tulisan dlm box1
+                    child: Column(
+                      children: [
+                        /////////////////////////////
+                        const SizedBox(
+                          height: 100,
+                        ),
+                        Row(children: const [
                           SizedBox(
                             width: 30,
                           ),
-                          Text(
-                            'Email'
-                          )
-                        ]
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: const [
+                          Text('Email')
+                        ]),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(children: const [
                           SizedBox(
                             width: 30,
                           ),
@@ -93,26 +134,20 @@ class _ProfilePage extends State<ProfilePage> {
                               fontWeight: FontWeight.bold,
                             ),
                           )
-                        ]
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: const[
+                        ]),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(children: const [
                           SizedBox(
                             width: 30,
                           ),
-                          Text(
-                            'Nama'
-                          )
-                        ]
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: const [
+                          Text('Nama')
+                        ]),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(children: const [
                           SizedBox(
                             width: 30,
                           ),
@@ -124,87 +159,88 @@ class _ProfilePage extends State<ProfilePage> {
                               fontWeight: FontWeight.bold,
                             ),
                           )
-                        ]
-                      ),
-                      const SizedBox(
-                        height: 220,
-                      ),
-                      Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed('/logout');
-                          },
-                          child: const Icon(
-                                  Icons.logout,
-                                ),
+                        ]),
+                        const SizedBox(
+                          height: 220,
                         ),
-                      )
-                    ],),
+                        Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.toNamed('/logout');
+                            },
+                            child: const Icon(
+                              Icons.logout,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
 
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child:Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 150, 0, 0),
-                  child:
-                  Container(
-                          width: 300,
-                          height: 140,
-                          decoration: const BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                              BoxShadow(
-                                blurRadius: 4,
-                                color: Color(0x3600000F),
-                                offset: Offset(0, -1),
-                                ),
-                              ],
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 150, 0, 0),
+                    child: Container(
+                      width: 300,
+                      height: 140,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 4,
+                            color: Color(0x3600000F),
+                            offset: Offset(0, -1),
                           ),
+                        ],
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 20),
+                            child: const Text(
+                              'Bambang Susatyo',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(bottom: 20),
-                                  child: const Text('Bambang Susatyo',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                      fontSize: 18.0,
-                                      color: Colors.black,
-                                       fontWeight: FontWeight.bold),),
-                                    ),
-                                ],
-                            ),                    
+                        ],
+                      ),
                     ),
                   ),
-              ), 
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                ),
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 95, 0, 0),
-                    child:
-                    Column(
-                      children: const[
+                    child: Column(
+                      children: const [
                         CircleAvatar(
-                        radius: 50,
-                        backgroundImage:
-                            AssetImage('assets/image/pic-kuis.png'),
+                          radius: 50,
+                          backgroundImage:
+                              AssetImage('assets/image/pic-kuis.png'),
                         ),
                       ],
                     ),
                   ),
-              ),              
-
-            ],),
-          ],),
+                ),
+              ],
+            ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }

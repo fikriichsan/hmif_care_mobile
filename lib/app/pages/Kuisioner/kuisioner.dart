@@ -34,7 +34,7 @@ class _KuisionerPageState extends State<KuisionerPage> {
                   ),
                   child: Text("1/10"),
                 )),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Padding(

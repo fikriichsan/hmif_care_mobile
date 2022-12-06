@@ -8,25 +8,25 @@ class HomePageScreen extends StatefulWidget {
   _HomePageScreenState createState() => _HomePageScreenState();
 }
 
-class _HomePageScreenState extends State<HomePageScreen>{
+class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Column(),
-                      ),
-                      Expanded(
+        body: SafeArea(
+            child: ListView(
+      children: [
+        SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Column(),
+                    ),
+                    Expanded(
                         flex: 12,
                         child: Column(
                           children: [
@@ -70,76 +70,79 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                     Get.toNamed('/formKonseling');
                                   },
                                   child: Container(
-                                  margin: const  EdgeInsets.all(2),
-                                  width: size.width*0.846,
-                                  height: 100,
-                                  decoration: const BoxDecoration(
-                                    color: darkBlue,
-                                    borderRadius: BorderRadius.all(Radius.circular(10),),
-                                  ),
-                                  child: 
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/homepage_icon.png",
-                                        width: 90,
+                                    margin: const EdgeInsets.all(2),
+                                    width: size.width * 0.846,
+                                    height: 100,
+                                    decoration: const BoxDecoration(
+                                      color: darkBlue,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
                                       ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            children: const [
-                                              Text(
-                                                "Form Konsultasi",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/homepage_icon.png",
+                                          width: 90,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Row(
+                                              children: const [
+                                                Text(
+                                                  "Form Konsultasi",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                  ),
                                                 ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: const [
+                                                Text(
+                                                  "Ingin memeriksakan keadaan",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                  ),
                                                 ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: const [
-                                              Text(
-                                                "Ingin memeriksakan keadaan",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
+                                              ],
+                                            ),
+                                            Row(
+                                              children: const [
+                                                Text(
+                                                  "Anda lebih lanjut?",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                  ),
                                                 ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: const [
+                                                Text(
+                                                  "Yuk Konsul",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                  ),
                                                 ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: const[
-                                              Text(
-                                                "Anda lebih lanjut?",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                ),
-                                                ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: const[
-                                              Text(
-                                                "Yuk Konsul",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                ),
-                                                ),
-                                            ],
-                                          ),
-                                        ],
-                                      )
-                                    ],
+                                              ],
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
                                 ),
                               ],
                             ),
@@ -153,28 +156,31 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                     Get.toNamed('/review');
                                   },
                                   child: Container(
-                                  margin: const EdgeInsets.all(2),
-                                  width: size.width*0.846,
-                                  padding: const EdgeInsets.symmetric(vertical: 20),
-                                  decoration: const BoxDecoration(
-                                    color: lightBlue,
-                                    borderRadius: BorderRadius.all(Radius.circular(10),),
+                                    margin: const EdgeInsets.all(2),
+                                    width: size.width * 0.846,
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 20),
+                                    decoration: const BoxDecoration(
+                                      color: lightBlue,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const [
+                                        Text(
+                                          "Tulis Feedback Konseling",
+                                          style: TextStyle(
+                                            color: white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  child: 
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const[
-                                      Text(
-                                        "Tulis Feedback Konseling",
-                                        style: TextStyle(
-                                          color: white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
                                 ),
                               ],
                             ),
@@ -189,129 +195,139 @@ class _HomePageScreenState extends State<HomePageScreen>{
                               children: [
                                 Column(
                                   children: const [
-                                  Text(
-                                    "Trending News",
-                                    style: TextStyle(
-                                      fontSize: 16,
+                                    Text(
+                                      "Trending News",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
                                   ],
                                 )
                               ],
                             ),
-                            const SizedBox(height: 20),
                             Container(
-                              height: 200,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed('/news');
-                                    },
-                                    child: Container(
+                                height: 200,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.toNamed('/news');
+                                      },
+                                      child: Container(
+                                        width: 300,
+                                        height: 200,
+                                        padding: const EdgeInsets.fromLTRB(
+                                            80, 10, 0, 0),
+                                        margin:
+                                            const EdgeInsets.only(right: 16),
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/images/item1.png"),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
                                       width: 300,
                                       height: 200,
-                                      padding: const EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          80, 10, 0, 0),
                                       margin: const EdgeInsets.only(right: 16),
                                       decoration: const BoxDecoration(
                                         image: DecorationImage(
-                                          image: AssetImage("assets/images/item1.png"),
+                                          image: AssetImage(
+                                              "assets/images/item1.png"),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 300,
-                                    height: 200,
-                                    padding:  const EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                    margin: const EdgeInsets.only(right: 16),
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/images/item1.png"),
-                                        fit: BoxFit.cover,
+                                    Container(
+                                      width: 300,
+                                      height: 200,
+                                      padding:
+                                          EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      margin: EdgeInsets.only(right: 16),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/item1.png"),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 300,
-                                    height: 200,
-                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                    margin: EdgeInsets.only(right: 16),
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/images/item1.png"),
-                                        fit: BoxFit.cover,
+                                    Container(
+                                      width: 300,
+                                      height: 200,
+                                      padding:
+                                          EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      margin: EdgeInsets.only(right: 16),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/item1.png"),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 300,
-                                    height: 200,
-                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                    margin: EdgeInsets.only(right: 16),
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/images/item1.png"),
-                                        fit: BoxFit.cover,
+                                    Container(
+                                      width: 300,
+                                      height: 200,
+                                      padding:
+                                          EdgeInsets.fromLTRB(80, 10, 0, 0),
+                                      margin: EdgeInsets.only(right: 16),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/item1.png"),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 300,
-                                    height: 200,
-                                    padding: EdgeInsets.fromLTRB(80, 10, 0, 0),
-                                    margin: EdgeInsets.only(right: 16),
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/images/item1.png"),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ),
+                                  ],
+                                )),
                             SizedBox(height: 5),
                             Row(
                               children: [
                                 Column(
                                   children: const [
-                                  Text(
-                                    "Kata Mereka Tentang HMIF Care",
-                                    style: TextStyle(
-                                      fontSize: 16,
+                                    Text(
+                                      "Kata Mereka Tentang HMIF Care",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
                                   ],
                                 )
                               ],
                             ),
                             SizedBox(height: 30),
                             Container(
-                              height:210,
-                              child: ListView(
-                                padding: EdgeInsets.all(5),
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  Container(
-                                    width: 180,
-                                    padding: const EdgeInsets.all(15),
-                                    margin: const EdgeInsets.only(right: 15),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [ BoxShadow(
-                                        color: Colors.black12,
-                                        blurRadius: 3.0,
-                                        spreadRadius: 2.0,
-                                        offset: Offset(0, 2.0),
-                                          )]
-                                    ),
-                                    child: 
-                                      Column(
-                                        children:[
+                                height: 210,
+                                child: ListView(
+                                  padding: EdgeInsets.all(5),
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    Container(
+                                      width: 180,
+                                      padding: const EdgeInsets.all(15),
+                                      margin: const EdgeInsets.only(right: 15),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black12,
+                                              blurRadius: 3.0,
+                                              spreadRadius: 2.0,
+                                              offset: Offset(0, 2.0),
+                                            )
+                                          ]),
+                                      child: Column(
+                                        children: [
                                           Row(
                                             children: [
                                               Image.asset(
@@ -325,7 +341,8 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                                 width: 80,
                                                 child: Text(
                                                   "Bambang Pamungkas",
-                                                  maxLines: 2,),
+                                                  maxLines: 2,
+                                                ),
                                               )
                                             ],
                                           ),
@@ -333,49 +350,50 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                             height: 20,
                                           ),
                                           Row(
-                                           children: const [
-                                            Text(
-                                              "  Sangat Baik",
-                                              style: TextStyle(
-                                                color: darkBlue,
-                                                fontWeight: FontWeight.bold,
+                                            children: const [
+                                              Text(
+                                                "  Sangat Baik",
+                                                style: TextStyle(
+                                                  color: darkBlue,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                            ),
-                                           ], 
+                                            ],
                                           ),
                                           SizedBox(
                                             height: 10,
                                           ),
                                           Row(
-                                           children: [
+                                            children: [
                                               Container(
                                                 width: 125,
-                                                padding: EdgeInsets.only(left: 9),
+                                                padding:
+                                                    EdgeInsets.only(left: 9),
                                                 child: Text(
-                                                  "Konsultasinya sangat asik dan termotivasi"
-                                                ),
+                                                    "Konsultasinya sangat asik dan termotivasi"),
                                               )
-                                           ], 
+                                            ],
                                           ),
                                         ],
                                       ),
-                                  ),
-                                  Container(
-                                    width: 180,
-                                    padding: EdgeInsets.all(15),
-                                    margin: EdgeInsets.only(right: 15),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: const [BoxShadow(
-                                        color: Colors.black12,
-                                        blurRadius: 3.0,
-                                        spreadRadius: 2.0,
-                                        offset: Offset(0, 2.0),
-                                          )]
                                     ),
-                                    child: 
-                                      Column(
+                                    Container(
+                                      width: 180,
+                                      padding: EdgeInsets.all(15),
+                                      margin: EdgeInsets.only(right: 15),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black12,
+                                              blurRadius: 3.0,
+                                              spreadRadius: 2.0,
+                                              offset: Offset(0, 2.0),
+                                            )
+                                          ]),
+                                      child: Column(
                                         children: [
                                           Row(
                                             children: [
@@ -390,7 +408,8 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                                 width: 80,
                                                 child: Text(
                                                   "Bambang Yudho",
-                                                  maxLines: 2,),
+                                                  maxLines: 2,
+                                                ),
                                               )
                                             ],
                                           ),
@@ -398,52 +417,46 @@ class _HomePageScreenState extends State<HomePageScreen>{
                                             height: 20,
                                           ),
                                           Row(
-                                           children: [
-                                            Text(
-                                              "  Baik",
-                                              style: TextStyle(
-                                                color: darkBlue,
-                                                fontWeight: FontWeight.bold,
+                                            children: [
+                                              Text(
+                                                "  Baik",
+                                                style: TextStyle(
+                                                  color: darkBlue,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                            ),
-                                           ], 
+                                            ],
                                           ),
                                           SizedBox(
                                             height: 10,
                                           ),
                                           Row(
-                                           children: [
+                                            children: [
                                               Container(
                                                 width: 125,
-                                                padding: const EdgeInsets.only(left: 9),
+                                                padding: const EdgeInsets.only(
+                                                    left: 9),
                                                 child: const Text(
-                                                  "Konsultasinya sangat asik dan termotivasi"
-                                                ),
+                                                    "Konsultasinya sangat asik dan termotivasi"),
                                               )
-                                           ], 
+                                            ],
                                           ),
                                         ],
                                       ),
-                                  ),
-                                ],
-                              )
-                            ),
+                                    ),
+                                  ],
+                                )),
                           ],
-                        )
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Column(),
-                      ),
-                    ],
-                  ),
-                  
-                ],
-              )
-            )
-          ],
-          )
-        )
-    );
+                        )),
+                    Expanded(
+                      flex: 1,
+                      child: Column(),
+                    ),
+                  ],
+                ),
+              ],
+            ))
+      ],
+    )));
   }
 }
