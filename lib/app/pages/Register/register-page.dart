@@ -57,8 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
-  String url =
-      Platform.isAndroid ? 'http://192.168.1.9:3001' : 'http://localhost:3001';
+  String url ='https://3266-114-125-170-137.ap.ngrok.io';
 
   Future<void> Register() async {
     try {

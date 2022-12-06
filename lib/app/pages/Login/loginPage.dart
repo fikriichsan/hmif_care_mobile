@@ -42,8 +42,7 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  String url =
-      Platform.isAndroid ? 'http://192.168.1.13:3001' : 'http://localhost:3001';
+  String url = 'https://3266-114-125-170-137.ap.ngrok.io';
 
   Future<void> login() async {
     try {
@@ -56,6 +55,8 @@ class _LoginPageState extends State<LoginPage> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', response.data['token']);
       prefs.setString("nim", nim);
+      var token = await prefs.getString('token');
+      print(token);
       if (response.data['message'] == 'Login Success') {
         Get.toNamed('/welcomek');
       }
