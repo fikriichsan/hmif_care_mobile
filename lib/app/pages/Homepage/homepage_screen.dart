@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/theme/colors.dart';
 import 'package:get/get.dart';
 
@@ -9,9 +13,41 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen>{
+  String url = Platform.isAndroid ? 'http://192.168.1.13:3001' : 'http://localhost:3001';
+
+  Future getReview() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('token')!;
+      var dio = Dio();
+      dio.options.headers['content-type'] = 'application/json';
+      dio.options.headers['accept'] = 'application/json';
+      dio.options.headers['Authorization'] = 'Bearer $token';
+      var response = await dio.get(url + '/review/');
+      if (response.statusCode == 200){
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      if(e is DioError){
+        print(e.response!.data);
+      }
+    }
+  }
+
+  Future getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    print('ini token');
+    print(token);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    getToken();
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -289,144 +325,90 @@ class _HomePageScreenState extends State<HomePageScreen>{
                               ],
                             ),
                             SizedBox(height: 30),
-                            Container(
-                              height:210,
-                              child: ListView(
-                                padding: EdgeInsets.all(5),
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  Container(
-                                    width: 180,
-                                    padding: EdgeInsets.all(15),
-                                    margin: EdgeInsets.only(right: 15),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [BoxShadow(
-                                        color: Colors.black12,
-                                        blurRadius: 3.0,
-                                        spreadRadius: 2.0,
-                                        offset: Offset(0, 2.0),
-                                          )]
-                                    ),
-                                    child: 
-                                      Column(
-                                        children: [
-                                          Row(
+                            FutureBuilder(
+                              future: getReview(),
+                              builder: (context, AsyncSnapshot snapshot) {
+                                print(snapshot.data);
+                                if(snapshot.hasData){
+                                  return Container(
+                                  height:210,
+                                  child: ListView.builder(
+                                    padding: EdgeInsets.all(5),
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: snapshot.data.length,
+                                    itemBuilder:(context, index) {
+                                      return Container(
+                                        width: 180,
+                                        padding: EdgeInsets.all(15),
+                                        margin: EdgeInsets.only(right: 15),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(10),
+                                          boxShadow: [BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 3.0,
+                                            spreadRadius: 2.0,
+                                            offset: Offset(0, 2.0),
+                                              )]
+                                        ),
+                                        child: 
+                                          Column(
                                             children: [
-                                              Image.asset(
-                                                "assets/images/profil.png",
-                                                width: 50,
+                                              Row(
+                                                children: [
+                                                  Image.asset(
+                                                    "assets/images/profil.png",
+                                                    width: 50,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Container(
+                                                    width: 80,
+                                                    child: Text(
+                                                      snapshot.data[index]['id_user']['username'],
+                                                      maxLines: 2,),
+                                                  )
+                                                ],
                                               ),
                                               SizedBox(
-                                                width: 10,
+                                                height: 20,
                                               ),
-                                              Container(
-                                                width: 80,
-                                                child: Text(
-                                                  "Bambang Pamungkas",
-                                                  maxLines: 2,),
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          Row(
-                                           children: [
-                                            Text(
-                                              "  Sangat Baik",
-                                              style: TextStyle(
-                                                color: darkBlue,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                           ], 
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                           children: [
-                                              Container(
-                                                width: 125,
-                                                padding: EdgeInsets.only(left: 9),
-                                                child: Text(
-                                                  "Konsultasinya sangat asik dan termotivasi"
+                                              Row(
+                                               children: [
+                                                Text(
+                                                  snapshot.data[index]['rate'],
+                                                  style: TextStyle(
+                                                    color: darkBlue,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              )
-                                           ], 
-                                          ),
-                                        ],
-                                      ),
-                                  ),
-                                  Container(
-                                    width: 180,
-                                    padding: EdgeInsets.all(15),
-                                    margin: EdgeInsets.only(right: 15),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [BoxShadow(
-                                        color: Colors.black12,
-                                        blurRadius: 3.0,
-                                        spreadRadius: 2.0,
-                                        offset: Offset(0, 2.0),
-                                          )]
-                                    ),
-                                    child: 
-                                      Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/profil.png",
-                                                width: 50,
+                                               ], 
                                               ),
                                               SizedBox(
-                                                width: 10,
+                                                height: 10,
                                               ),
-                                              Container(
-                                                width: 80,
-                                                child: Text(
-                                                  "Bambang Yudho",
-                                                  maxLines: 2,),
-                                              )
+                                              Row(
+                                               children: [
+                                                  Container(
+                                                    width: 125,
+                                                    padding: EdgeInsets.only(left: 9),
+                                                    child: Text(
+                                                      snapshot.data[index]['desc']
+                                                    ),
+                                                  )
+                                               ], 
+                                              ),
                                             ],
                                           ),
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          Row(
-                                           children: [
-                                            Text(
-                                              "  Baik",
-                                              style: TextStyle(
-                                                color: darkBlue,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                           ], 
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                           children: [
-                                              Container(
-                                                width: 125,
-                                                padding: EdgeInsets.only(left: 9),
-                                                child: Text(
-                                                  "Konsultasinya sangat asik dan termotivasi"
-                                                ),
-                                              )
-                                           ], 
-                                          ),
-                                        ],
-                                      ),
-                                  ),
-                                ],
-                              )
+                                      );
+                                    } 
+                                  )
+                                );
+                                } else { 
+                                  return Text("loading");
+                                }
+                              }
                             ),
                           ],
                         )
