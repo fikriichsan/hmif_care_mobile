@@ -1,7 +1,12 @@
 
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -11,8 +16,34 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePage extends State<ProfilePage> {
+  String url = Platform.isAndroid ? 'http://192.168.1.13:3001' : 'http://localhost:3001';
+
+  Future getUser() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      SharedPreferences akun = await SharedPreferences.getInstance();
+      String nim = prefs.getString('nim')!;
+      var dio = Dio();
+      dio.options.headers['content-type'] = 'application/json';
+      dio.options.headers['accept'] = 'application/json';
+      var response = await dio.get(url + '/user/$nim');
+      akun.setString('id', response.data['_id']);
+      // print(response.data);
+      setState(() {
+        response.data;
+      });
+      return response.data;
+    } catch (e) {
+      print(e);
+      if(e is DioError){
+        print(e.response!.data);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // getUser();
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(
@@ -61,85 +92,94 @@ class _ProfilePage extends State<ProfilePage> {
                     ),
                   ),
                   // tulisan dlm box1
-                  child: Column(
-                    children: [
-                      /////////////////////////////
-                      const SizedBox(
-                        height: 100,
-                      ),
-                      Row(
-                        children: const[
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            'Email'
-                          )
-                        ]
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: const [
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            '11191024@student.itk.ac.id',
-                            style: TextStyle(
-                              color: darkBlue,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                  child: FutureBuilder(
+                    future: getUser(),
+                    builder: (context, AsyncSnapshot snapshot) {
+                      if(snapshot.hasData){
+                        // print(snapshot.data);
+                        return Column(
+                          children:<Widget> [
+                            const SizedBox(
+                              height: 100,
                             ),
-                          )
-                        ]
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: const[
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            'Nama'
-                          )
-                        ]
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: const [
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            'Bambang Sutoyor',
-                            style: TextStyle(
-                              color: darkBlue,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ]
-                      ),
-                      const SizedBox(
-                        height: 220,
-                      ),
-                      Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed('/logout');
-                          },
-                          child: const Icon(
-                                  Icons.logout,
+                            Row(
+                              children: const[
+                                SizedBox(
+                                  width: 30,
                                 ),
-                        ),
-                      )
-                    ],),
+                                Text(
+                                  'Email'
+                                )
+                              ]
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Text(
+                                  snapshot.data['email'],
+                                  style: TextStyle(
+                                    color: darkBlue,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ]
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Row(
+                              children: const[
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Text(
+                                  'Handphone'
+                                )
+                              ]
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Text(
+                                  snapshot.data['telepon'],
+                                  style: TextStyle(
+                                    color: darkBlue,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ]
+                            ),
+                            const SizedBox(
+                              height: 220,
+                            ),
+                            Center(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.toNamed('/logout');
+                                },
+                                child: const Icon(
+                                        Icons.logout,
+                                      ),
+                              ),
+                            )
+                          ],
+                        );
+                      }else {
+                        return Center(child: CircularProgressIndicator());
+                      };
+                  },)
                   ),
                 ),
 
@@ -171,15 +211,24 @@ class _ProfilePage extends State<ProfilePage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  margin: const EdgeInsets.only(bottom: 20),
-                                  child: const Text('Bambang Susatyo',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                      fontSize: 18.0,
-                                      color: Colors.black,
-                                       fontWeight: FontWeight.bold),),
-                                    ),
+                                FutureBuilder(
+                                  future: getUser(),
+                                  builder: (context, AsyncSnapshot snapshot) {
+                                    if(snapshot.hasData){
+                                      return Container(
+                                      margin: const EdgeInsets.only(bottom: 20),
+                                      child: Text(snapshot.data['username'],
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                          fontSize: 18.0,
+                                          color: Colors.black,
+                                           fontWeight: FontWeight.bold),),
+                                        );
+                                    } else {
+                                      return Text("loading");
+                                    }
+                                  }
+                                ),
                                 ],
                             ),                    
                     ),
