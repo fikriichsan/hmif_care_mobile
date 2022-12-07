@@ -57,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
-  String url ='https://3266-114-125-170-137.ap.ngrok.io';
+  String url ='http://192.168.8.159:3001';
 
   Future<void> Register() async {
     try {

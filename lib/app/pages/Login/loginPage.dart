@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  String url = 'https://3266-114-125-170-137.ap.ngrok.io';
+  String url = 'http://192.168.8.159:3001';
 
   Future<void> login() async {
     try {

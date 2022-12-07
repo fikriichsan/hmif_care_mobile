@@ -16,7 +16,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePage extends State<ProfilePage> {
-  String url = 'https://3266-114-125-170-137.ap.ngrok.io';
+  String url = 'http://192.168.8.159:3001';
 
   Future getUser() async {
     try {
@@ -27,8 +27,7 @@ class _ProfilePage extends State<ProfilePage> {
       dio.options.headers['content-type'] = 'application/json';
       dio.options.headers['accept'] = 'application/json';
       var response = await dio.get(url + '/user/$nim');
-      akun.setString('id', response.data['_id']);
-      // print(response.data);
+      akun.setString('id', response.data['_id']);;
       return response.data;
     } catch (e) {
       print(e);

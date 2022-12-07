@@ -13,7 +13,7 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen>{
-  String url = 'https://3266-114-125-170-137.ap.ngrok.io';
+  String url = 'http://192.168.8.159:3001';
 
   Future getReview() async {
     try {
@@ -319,7 +319,6 @@ class _HomePageScreenState extends State<HomePageScreen>{
                             FutureBuilder(
                               future: getReview(),
                               builder: (context, AsyncSnapshot snapshot) {
-                                print(snapshot.data);
                                 if(snapshot.hasData){
                                   return Container(
                                   height:210,
