@@ -52,16 +52,10 @@ class _HomePageScreenState extends State<HomePageScreen>{
       var response = await dio.get(url + '/konseling/$idUser');
       print(response.data);
       if (response.statusCode == 200){
-        review.setString("jenis_konseling", response.data[0]['jenis_konseling']);
-        review.setString("media", response.data[0]['media_konseling']);
-        review.setString("jadwal", response.data[0]['jadwal_konseling']);
-        review.setString("sesi", response.data[0]['sesi_konseling']);
-        review.setString("id_konseling", response.data[0]['_id']);
         return response.data;
-      } else if(response.statusCode == 201){
+      } else if(response.statusCode==201){
         return null;
       } 
-
     } catch (e) {
       print(e);
       if(e is DioError){
