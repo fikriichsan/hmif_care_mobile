@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hmif_care_mobile/app/utils/theme/colors.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ReviewScreen extends StatefulWidget {
   @override
@@ -8,6 +10,25 @@ class ReviewScreen extends StatefulWidget {
 }
 
 class _ReviewScreenState extends State<ReviewScreen>{
+  String url = 'http://10.160.118.242:3001';
+
+  Future addReview() async {
+    try {
+      SharedPreferences review = await SharedPreferences.getInstance();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      SharedPreferences akun = await SharedPreferences.getInstance();
+      String jenisKonseling = review.getString("jenis_konseling")!;
+      String jadwalKonseling = review.getString("jadwal_konseling")!;
+      String sesiKonseling = review.getString("sesi_konseling")!;
+      String mediaKonseling = review.getString("sesi_konseling")!;
+      String id_Konseling = review.getString("id_konseling")!;
+      String id_user = review.getString("id")!;
+      String token = prefs.getString("token")!;
+    } catch (e) {
+        print(e);
+        return(e);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

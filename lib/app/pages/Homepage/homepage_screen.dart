@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/retry.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/theme/colors.dart';
 import 'package:get/get.dart';
@@ -13,7 +15,7 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen>{
-  String url = 'http://192.168.8.159:3001';
+  String url = 'http://10.160.118.242:3001';
 
   Future getReview() async {
     try {
@@ -29,6 +31,37 @@ class _HomePageScreenState extends State<HomePageScreen>{
       } else {
         return null;
       }
+    } catch (e) {
+      print(e);
+      if(e is DioError){
+        print(e.response!.data);
+      }
+    }
+  }
+  Future getReviewById() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      SharedPreferences akun = await SharedPreferences.getInstance();
+      SharedPreferences review = await SharedPreferences.getInstance();
+      String idUser = akun.getString("id")!;
+      String token = prefs.getString('token')!;
+      var dio = Dio();
+      dio.options.headers['content-type'] = 'application/json';
+      dio.options.headers['accept'] = 'application/json';
+      dio.options.headers['Authorization'] = 'Bearer $token';
+      var response = await dio.get(url + '/konseling/$idUser');
+      print(response.data);
+      if (response.statusCode == 200){
+        review.setString("jenis_konseling", response.data[0]['jenis_konseling']);
+        review.setString("media", response.data[0]['media_konseling']);
+        review.setString("jadwal", response.data[0]['jadwal_konseling']);
+        review.setString("sesi", response.data[0]['sesi_konseling']);
+        review.setString("id_konseling", response.data[0]['_id']);
+        return response.data;
+      } else if(response.statusCode == 201){
+        return null;
+      } 
+
     } catch (e) {
       print(e);
       if(e is DioError){
@@ -173,37 +206,46 @@ class _HomePageScreenState extends State<HomePageScreen>{
                             const SizedBox(
                               height: 10,
                             ),
-                            Row(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed('/review');
-                                  },
-                                  child: Container(
-                                  margin: const EdgeInsets.all(2),
-                                  width: size.width*0.846,
-                                  padding: const EdgeInsets.symmetric(vertical: 20),
-                                  decoration: const BoxDecoration(
-                                    color: lightBlue,
-                                    borderRadius: BorderRadius.all(Radius.circular(10),),
-                                  ),
-                                  child: 
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                            FutureBuilder(
+                              future: getReviewById(),
+                              builder: (context, AsyncSnapshot snapshot) {
+                                if(snapshot.hasData){
+                                  return Row(
                                     children: [
-                                      Text(
-                                        "Tulis Feedback Konseling",
-                                        style: TextStyle(
-                                          color: white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.toNamed('/review');
+                                        },
+                                        child: Container(
+                                        margin: const EdgeInsets.all(2),
+                                        width: size.width*0.846,
+                                        padding: const EdgeInsets.symmetric(vertical: 20),
+                                        decoration: const BoxDecoration(
+                                          color: lightBlue,
+                                          borderRadius: BorderRadius.all(Radius.circular(10),),
                                         ),
-                                      )
+                                        child: 
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Tulis Feedback Konseling",
+                                              style: TextStyle(
+                                                color: white,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      ),
                                     ],
-                                  ),
-                                ),
-                                ),
-                              ],
+                                  );
+                                }else { 
+                                  return SizedBox(height: 50,);
+                                };
+                              }
                             ),
                             Row(
                               children: [

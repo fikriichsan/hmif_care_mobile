@@ -18,13 +18,16 @@ class _KuisionerPageState extends State<KuisionerPage> {
   PageController _controller = PageController();
   static const _kDuration = const Duration(milliseconds: 300);
   static const _kCurve = Curves.ease;
+  final list = <int>[];
   var _result;
+  
   int counter = 1;
 
-  String url = 'http://192.168.8.159:3001';
+  String url = 'http://10.160.118.242:3001';
   Future getAllQuiz() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
+      SharedPreferences result = await SharedPreferences.getInstance();
       String token = prefs.getString('token')!;
       var dio = Dio();
       dio.options.headers['content-type'] = 'application/json';
@@ -32,6 +35,7 @@ class _KuisionerPageState extends State<KuisionerPage> {
       dio.options.headers['Authorization'] = 'Bearer $token';
       var response = await dio.get(url + '/quiz/638f970fdb0901bf3718e10e');
       if (response.statusCode == 200){
+          result.setString("id_quiz", response.data["_id"]);
           return response.data;
       } else {
           return null;
@@ -43,6 +47,49 @@ class _KuisionerPageState extends State<KuisionerPage> {
       }
     }
   }
+
+  Future sumResult() async{
+    SharedPreferences result = await SharedPreferences.getInstance();
+    var sum = 0;
+    for (int i = 0; i < list.length; i++){
+      sum = sum + list[i];
+    }
+    result.setString("total_nilai", sum.toString());
+    print(result.getString("total_nilai"));
+  }
+
+  Future addResult() async {
+    try{
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      SharedPreferences akun = await SharedPreferences.getInstance();
+      SharedPreferences result = await SharedPreferences.getInstance();
+
+      var token = await prefs.getString('token');
+      var idQuiz = await result.getString('id_quiz');
+      var idUser = await akun.getString('id');
+      var quizresult = await result.getString("total_nilai");
+
+      var dio = Dio();
+      dio.options.headers['content-type'] = 'application/json';
+      dio.options.headers['accept'] = 'application/json';
+      dio.options.headers['Authorization'] = 'Bearer $token';
+      var response = await dio.post(url + '/quiz/postResult',
+        data: {"id_user": idUser, "id_quiz": idQuiz, "total_nilai": quizresult});
+      if (response.statusCode == 200){
+        print(response.data);
+          return response.data;
+      } else {
+          return null;
+      }
+    }catch (e) {
+        print(e);
+        if(e is DioError){
+          print(e.response!.data);
+        }
+      }
+  }
+
+
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     getAllQuiz();
@@ -170,9 +217,12 @@ class _KuisionerPageState extends State<KuisionerPage> {
                                       alignment: Alignment.bottomLeft,
                                        child: TextButton.icon(
                                           onPressed: () {
-                                            setState(() {
-                                              counter--;
-                                            });
+                                            if(counter == 2) {
+                                                setState(() { 
+                                                  counter--;
+                                                });
+                                                
+                                              }
                                             _controller.previousPage(duration: _kDuration, curve: _kCurve);
                                           },
                                           icon: Icon(Icons.keyboard_arrow_left),
@@ -186,13 +236,18 @@ class _KuisionerPageState extends State<KuisionerPage> {
                                     child: TextButton.icon(
                                         onPressed: () {
                                           if(snapshot.data['question'].length == counter) {
+                                            setState(() {
+                                              list.add(_result);
+                                            });
+                                            sumResult();
+                                            addResult();
                                             Navigator.of(context).restorablePush(_dialogBuilder);
-                                            print(_result);
                                           } else {
                                             setState(() {
                                               counter++;
+                                              list.add(_result);
+                                              _result = 0;
                                             });
-                                            print(counter);
                                             _controller.nextPage(duration: _kDuration, curve: _kCurve);
                                           }
                                         },
