@@ -14,7 +14,11 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  String url = 'https://3266-114-125-170-137.ap.ngrok.io';
+  // String url = 'https://3266-114-125-170-137.ap.ngrok.io';
+
+  String url = Platform.isAndroid
+      ? 'http://10.160.119.170:3001'
+      : 'http://localhost:3001';
 
   Future getReview() async {
     try {
@@ -57,6 +61,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
