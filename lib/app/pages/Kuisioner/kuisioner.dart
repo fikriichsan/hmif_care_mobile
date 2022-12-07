@@ -99,7 +99,7 @@ class _KuisionerPageState extends State<KuisionerPage> {
                                       activeColor: darkBrown,
                                       onChanged: (value) {
                                         setState(() {
-                                          _result += value;
+                                          _result = value;
                                         });
                                       }),
                                 ),
@@ -118,7 +118,7 @@ class _KuisionerPageState extends State<KuisionerPage> {
                                       activeColor: darkBrown,
                                       onChanged: (value) {
                                         setState(() {
-                                          _result += value;
+                                          _result = value;
                                         });
                                       }),
                                 ),
@@ -137,7 +137,7 @@ class _KuisionerPageState extends State<KuisionerPage> {
                                       activeColor: darkBrown,
                                       onChanged: (value) {
                                         setState(() {
-                                          _result += value;
+                                          _result = value;
                                         });
                                       }),
                                 ),
@@ -156,7 +156,7 @@ class _KuisionerPageState extends State<KuisionerPage> {
                                       activeColor: darkBrown,
                                       onChanged: (value) {
                                         setState(() {
-                                          _result += value;
+                                          _result = value;
                                         });
                                       }),
                                 ),
