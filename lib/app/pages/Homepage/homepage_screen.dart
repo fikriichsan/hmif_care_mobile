@@ -36,18 +36,9 @@ class _HomePageScreenState extends State<HomePageScreen>{
       }
     }
   }
-
-  Future getToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString('token');
-    print('ini token');
-    print(token);
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    getToken();
     return Scaffold(
       body: SafeArea(
         child: ListView(
