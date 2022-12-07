@@ -15,7 +15,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePage extends State<ProfilePage> {
-  String url = 'https://3266-114-125-170-137.ap.ngrok.io';
+  // String url = 'https://3266-114-125-170-137.ap.ngrok.io';
+  String url =
+      Platform.isAndroid ? 'http://192.168.1.9:3001' : 'http://localhost:3001';
 
   Future getUser() async {
     try {
